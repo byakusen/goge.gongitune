@@ -73,6 +73,11 @@ h1 .b{color:var(--blue)}h1 .o{color:var(--orange)}h1 .g{color:var(--green)}
 .tab.word small{color:var(--gl-ink)}
 .tab.word[aria-selected="true"]{background:var(--gl);color:#fff}
 .tab.word[aria-selected="true"] small{color:#fff}
+.tab.kttab{background:#E6F5F2;color:#17766A}
+.tab.kttab small{color:#17766A}
+.tab.kttab[aria-selected="true"]{background:#1F8A7A;color:#fff}
+.tab.kttab[aria-selected="true"] small{color:#fff}
+.tab.kttab:not(.word)[aria-selected="true"]::after{display:none}
 .tab:not(.word)[aria-selected="true"]::after{content:"";display:block;height:4px;border-radius:4px;margin:5px auto 0;width:40%;
   background:linear-gradient(90deg,var(--blue),var(--orange),var(--green))}
 
@@ -476,6 +481,73 @@ button.htcol:hover{background:#fff}
 .wd-tip{flex:0 0 auto;font-size:.75rem;color:var(--ink-soft);background:var(--gl-soft);border-radius:8px;padding:.4rem .7rem;line-height:1.5;margin:0}
 
 /* ===== スマホ（はば 760px 以下）：パネルの中だけスクロール ===== */
+/* ===== 言葉の練習 ===== */
+.kt{flex:1;min-height:0;display:flex;flex-direction:column}
+.kt .ktcard{flex:1}
+.ktseg button.done::after{content:" ✓";color:var(--green)}
+.ktcard{background:var(--glass-strong);border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-height:0;
+  border-top:6px solid var(--c);box-shadow:0 4px 14px rgba(40,60,80,.08)}
+.kthead{display:flex;gap:10px;align-items:flex-start;font-weight:800;font-size:1rem;line-height:1.7}
+.ktno{flex:none;width:2rem;height:2rem;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;font-size:1.05rem;margin-top:.2em}
+.kthead u,.ktq u{text-decoration:none;border-bottom:3px solid var(--red);padding-bottom:1px}
+.ktqs{list-style:none;margin:0;padding:4px 6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;align-items:center;column-gap:36px;row-gap:6px;flex:1;min-height:0}
+.ktqs li{display:flex;flex-direction:column;gap:6px}
+.ktq{font-size:clamp(1.05rem,1.6vw,1.45rem);font-weight:700;line-height:2.15}
+.kthead{font-size:1.08rem}
+.ktbox{justify-content:center}
+.ktc{font-size:1.12rem;padding:8px 16px}
+.ktm{font-size:1.08rem}
+.ktn{color:var(--c);font-weight:800;margin-right:4px}
+.ktb{display:inline-block;min-width:2.6em;border:2px dashed var(--c);background:#fff;color:var(--c);border-radius:10px;padding:0 8px;margin:0 3px;
+  font-weight:800;font-size:inherit;line-height:1.55;vertical-align:baseline;transition:background .2s,box-shadow .2s}
+.ktb.kaku{min-width:5.4em}
+.ktnw{white-space:nowrap}
+.ktb.sel{border-style:solid;background:var(--cbg);box-shadow:0 0 0 3px rgba(255,183,77,.65)}
+.ktb.ok{border:2px solid var(--green);color:var(--green);background:var(--green-bg);cursor:default}
+.ktb.ng{border:2px solid var(--red);color:var(--red);background:#fde8e8;animation:ktshake .4s}
+.ktb.just,.ktm.just{animation:ktpop .45s ease}
+@keyframes ktshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes ktpop{0%{transform:scale(.7);opacity:.3}60%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+.ktbox{display:flex;flex-wrap:wrap;gap:20px;padding:10px;border:2px dashed var(--c);border-radius:14px;background:rgba(255,255,255,.55)}
+.ktc{border:0;background:#fff;border-radius:12px;padding:8px 16px;font-weight:800;font-size:clamp(1.1rem,1.35vw,1.35rem);line-height:1.6;
+  box-shadow:0 2px 8px rgba(40,60,80,.12);transition:transform .15s,opacity .2s}
+.ktc:hover:not(:disabled){transform:translateY(-2px)}
+.ktc b{color:var(--c);margin-right:6px}
+.ktc.used{opacity:.35;cursor:default}
+.ktmaru{display:flex;gap:8px;flex-wrap:wrap;padding-left:1.4em}
+.ktm{display:flex;align-items:center;gap:6px;border:2px solid rgba(40,60,80,.15);background:#fff;border-radius:12px;padding:5px 12px 5px 6px;
+  font-weight:700;font-size:1rem;line-height:1.6;transition:transform .15s,background .2s}
+.ktm:hover:not(:disabled){transform:translateY(-2px)}
+.ktm:disabled{cursor:default}
+.ktm:disabled:not(.ok){opacity:.45}
+.ktpar{flex:none;display:inline-grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;border:2px dashed var(--c);font-weight:800;color:var(--red);font-size:1.05rem}
+.ktm.ok{border-color:var(--green);background:var(--green-bg)}
+.ktm.ok .ktpar{border-style:solid}
+.ktm.ng{border-color:var(--red);animation:ktshake .4s}
+.ktcount{font-weight:800;background:#fff;border-radius:999px;padding:6px 14px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.bar .lead.ktall{color:var(--green)}
+@media (min-width:761px){
+  .tab{font-size:clamp(.74rem,.94vw,1.05rem);padding:7px 3px;white-space:nowrap}
+  .tab small{font-size:.66rem;overflow:hidden;text-overflow:ellipsis}
+}
+@media (max-height:780px) and (min-width:761px){
+  .ktcard{padding:10px 14px;gap:6px}
+  .kthead{font-size:.92rem;line-height:1.55}
+  .ktno{width:1.7rem;height:1.7rem;font-size:.95rem}
+  .ktq{font-size:clamp(.98rem,1.4vw,1.25rem);line-height:1.95}
+  .ktqs{gap:2px}
+  .ktqs li{gap:3px}
+  .ktbox{padding:7px;gap:14px}
+  .ktc{padding:6px 14px;font-size:clamp(1.1rem,1.6vw,1.45rem)}
+  .ktm{padding:2px 10px 2px 4px;font-size:.93rem}
+  .ktpar{width:1.6em;height:1.6em}
+}
+@media (max-width:760px){
+  .kt{flex:none}
+  .ktqs{grid-template-columns:1fr;grid-auto-rows:auto}
+  .ktseg{flex-wrap:wrap}
+  .ktseg button{padding:6px 10px;font-size:.88rem}
+}
 @media (max-width:760px){
   body{padding-block:8px}
   .app{gap:8px}
@@ -620,6 +692,7 @@ const TABS = [
   {view:'climax',tab:'⑤ クライマックス',       sub:'クライマックス・主題'},
   {view:'hatsu', tab:'⑥ 発問',                 sub:'見たもの・色・幸せ'},
   {view:'review',tab:'⑦ ふり返り',             sub:'1まいにまとめる'},
+  {view:'kotoba',tab:'言葉の練習',             sub:'言葉を使ってみよう'},
   {view:'words', tab:'重要語句',               sub:'ことばのいみ'}
 ];
 
@@ -1694,6 +1767,48 @@ const WORDS = [
   {w:'つつ[口:ぐち]', t:'{[鉄:てっ]ぽうの、[玉:たま]が[出:で]る[先:さき]のところ}のこと。'}
 ];
 
+/* ---- 言葉の練習：（　）に入れる・〇をつける ----
+   type:'kigo' … 下の言葉をえらんで、記号（ア・イ…）を入れる
+   type:'kaku' … 下の言葉をえらんで、言葉を入れる
+   type:'maru' … ――の言葉の意味に合うほうに〇をつける
+   q の「□」が（　）になる。a は正しい答えの番号（0から）。[漢字:よみ] でふりがな。 */
+const KOTOBA = {
+  lead:'（　）をおしてから、下の言葉をえらぼう。',
+  leadMaru:'言葉の意味に合うほうを、おそう。',
+  done:'ぜんぶできたね！ 言葉の意味を、よく分かっているね。',
+  sec:[
+    {type:'kigo', c:'c-blue', tab:'一 記号をえらぶ', title:'（　）に合う言葉を、下からえらんで、記号を入れよう。',
+     choices:['まくしあげる','[引:ひ]っこめる','しゃがむ','むしり[取:と]る','ほす','かみくだく','[投:な]げこむ'],
+     qs:[
+      {q:'[花:か]だんの[草:くさ]を、[根:ね]っこから□。', a:3},
+      {q:'[犬:いぬ]が、かたいほねを、ガリガリと□。', a:5},
+      {q:'[玉:たま][入:い]れで、[赤:あか]い[玉:たま]をかごの[中:なか]に□。', a:6},
+      {q:'かめが、おどろいて[首:くび]を□。', a:1},
+      {q:'[川:かわ]に[入:はい]る[前:まえ]に、ズボンのすそを□。', a:0},
+      {q:'[晴:は]れた[日:ひ]に、あらったシャツを[外:そと]に□。', a:4}
+     ]},
+    {type:'kaku', c:'c-orange', tab:'二 言葉を書く', title:'（　）に合う言葉を、下からえらんで書こう。',
+     choices:['ひょいと','びくっと','さっさと','ぶらぶら','ぼんやりと','こっそり','ばたりと'],
+     qs:[
+      {q:'かみなりの[大:おお]きな[音:おと]に、□した。', a:1},
+      {q:'[日曜:にちよう][日:び]の[朝:あさ]、[公園:こうえん]を□[歩:ある]いた。', a:3},
+      {q:'[宿題:しゅくだい]を□すませて、[遊:あそ]びに[行:い]った。', a:2},
+      {q:'[強:つよ]い[風:かぜ]で、[立:た]てかけてあった[板:いた]が□たおれた。', a:6},
+      {q:'[雨:あめ]の[日:ひ]の[午後:ごご]、まどの[外:そと]を□ながめた。', a:4},
+      {q:'お[母:かあ]さんをおどろかせようと、プレゼントを□[用意:ようい]した。', a:5}
+     ]},
+    {type:'maru', c:'c-green', tab:'三 意味に〇', title:'<u>線</u>を[引:ひ]いた[言葉:ことば]の[意味:いみ]に[合:あ]うほうに、〇をつけよう。',
+     qs:[
+      {q:'[雨:あめ]にぬれた[子犬:こいぬ]を[見:み]て、<u>あわれ</u>に[思:おも]った。', o:['かわいそうに','うらやましく'], a:0},
+      {q:'エレベーターがなかなか[来:こ]なくて、<u>じれったい</u>。', o:['ゆったりする','いらいらする'], a:1},
+      {q:'マラソンを[走:はし]りきって、<u>ぐったりと</u>すわりこんだ。', o:['[力:ちから]がぬけて','[元気:げんき]いっぱいに'], a:0},
+      {q:'<u>ふと</u>[空:そら]を[見上:みあ]げると、にじが[出:で]ていた。', o:['[何度:なんど]もくり[返:かえ]して','なんとなく[急:きゅう]に'], a:1},
+      {q:'[一日中:いちにちじゅう]お[手伝:てつだ]いをしたのに、[気:き]づいてもらえず、<u>[引:ひ]き[合:あ]わない</u>と[思:おも]った。', o:['がんばったかいがない','とても[満足:まんぞく]だ'], a:0},
+      {q:'[夏:なつ]になって、[公園:こうえん]の[木:き]の[葉:は]がよく<u>しげって</u>いる。', o:['かれて[落:お]ちて','たくさんのびて[重:かさ]なり[合:あ]って'], a:1}
+     ]}
+  ]
+};
+
 /* ▲▲▲ 書きかえるのはここまで ▲▲▲ */
 
 
@@ -1780,6 +1895,74 @@ function quizResult(){
     </div>`;
   if(n===all){pinpon();setTimeout(party,150);}
   $('#retry').onclick=()=>{quizStart();VIEWS.quiz();};
+}
+
+/* ===== 言葉の練習のうごき（さわらない） ===== */
+let ktAns=null, ktSel=[], ktJust=null, ktTab=0;
+const KT_KANA='アイウエオカキクケコ', KT_NUM='①②③④⑤⑥⑦⑧';
+function ktRuby(s){return String(s).replace(/\[([^:\]]+):([^\]]+)\]/g,'<ruby>$1<rt>$2</rt></ruby>');}
+function ktReset(){ktAns=KOTOBA.sec.map(s=>s.qs.map(()=>null));ktSel=KOTOBA.sec.map(()=>null);ktJust=null;}
+function ktLabel(s,k){return s.type==='kigo'?KT_KANA[k]:ktRuby(s.choices[k]);}
+function ktSec(s,si){
+  const head=`<div class="kthead"><span class="ktno">${'一二三四五'[si]||si+1}</span><span>${ktRuby(s.title)}</span></div>`;
+  const just=i=>ktJust&&ktJust[0]===si&&ktJust[1]===i?' just':'';
+  if(s.type==='maru'){
+    return `<section class="ktcard ${s.c}">${head}<ol class="ktqs">${s.qs.map((q,i)=>{
+      const a=ktAns[si][i];
+      return `<li><div class="ktq"><span class="ktn">${KT_NUM[i]}</span>${ktRuby(q.q)}</div>
+        <div class="ktmaru">${q.o.map((o,k)=>{const ok=a!==null&&k===q.a;
+          return `<button class="ktm${ok?' ok'+just(i):''}" data-s="${si}" data-i="${i}" data-k="${k}" ${a!==null?'disabled':''}><span class="ktpar">${ok?'〇':''}</span><span>${ktRuby(o)}</span></button>`;}).join('')}</div></li>`;
+    }).join('')}</ol></section>`;
+  }
+  const sel=ktSel[si];
+  return `<section class="ktcard ${s.c}">${head}<ol class="ktqs">${s.qs.map((q,i)=>{
+      const a=ktAns[si][i];
+      const blank=`<button class="ktb ${s.type}${a!==null?' ok'+just(i):''}${a===null&&sel===i?' sel':''}" data-s="${si}" data-i="${i}" ${a!==null?'disabled':''} aria-label="${KT_NUM[i]}の（　）">${a===null?'　':ktLabel(s,a)}</button>`;
+      return `<li><div class="ktq"><span class="ktn">${KT_NUM[i]}</span>${ktRuby(q.q).replace(/□([。、])?/,(m,pu)=>`<span class="ktnw">${blank}${pu||''}</span>`)}</div></li>`;
+    }).join('')}</ol>
+    <div class="ktbox">${s.choices.map((c,k)=>{const used=ktAns[si].includes(k);
+      return `<button class="ktc${used?' used':''}" data-s="${si}" data-k="${k}" ${used?'disabled':''}>${s.type==='kigo'?`<b>${KT_KANA[k]}</b>`:''}${ktRuby(c)}</button>`;}).join('')}</div>
+  </section>`;
+}
+VIEWS.kotoba = function(){
+  if(!ktAns) ktReset();
+  const K=KOTOBA, si=ktTab, s=K.sec[si];
+  if(s.type!=='maru'&&(ktSel[si]===null||ktAns[si][ktSel[si]]!==null)){const f=ktAns[si].indexOf(null);ktSel[si]=f<0?null:f;}
+  const got=ktAns[si].filter(v=>v!==null).length, total=s.qs.length, done=got===total;
+  panel.innerHTML=`
+    <div class="bar">
+      <div class="seg ktseg">${K.sec.map((x,k)=>`<button class="${k===si?'on':''}${ktAns[k].every(v=>v!==null)?' done':''}" data-k="${k}">${x.tab}</button>`).join('')}</div>
+      <div class="lead${done?' ktall':''}">${done?K.done:(s.type==='maru'?K.leadMaru:K.lead)}</div>
+      <div class="ktcount">${got} / ${total}</div>
+      <button class="btn" id="ktReset">もう一度</button>
+    </div>
+    <div class="kt">${ktSec(s,si)}</div>`;
+  ktJust=null;
+  panel.querySelectorAll('.ktseg button').forEach(b=>b.onclick=()=>{ktTab=+b.dataset.k;VIEWS.kotoba();});
+  $('#ktReset').onclick=()=>{ktAns[si]=s.qs.map(()=>null);ktSel[si]=null;VIEWS.kotoba();};
+  panel.querySelectorAll('.ktb').forEach(b=>b.onclick=()=>{ktSel[+b.dataset.s]=+b.dataset.i;VIEWS.kotoba();});
+  panel.querySelectorAll('.ktc').forEach(b=>b.onclick=()=>{
+    const k=+b.dataset.k, i=ktSel[si]; if(i===null)return;
+    if(k===s.qs[i].a){ktAns[si][i]=k;ktJust=[si,i];pinpon();ktAfter();}
+    else{
+      bubu();
+      const bl=panel.querySelector(`.ktb[data-s="${si}"][data-i="${i}"]`);
+      if(bl){bl.innerHTML=ktLabel(s,k);bl.classList.remove('sel');bl.classList.add('ng');
+        setTimeout(()=>{if(bl.isConnected){bl.innerHTML='　';bl.classList.remove('ng');bl.classList.add('sel');}},800);}
+    }
+  });
+  panel.querySelectorAll('.ktm').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i, k=+b.dataset.k, q=s.qs[i];
+    if(k===q.a){ktAns[si][i]=k;ktJust=[si,i];pinpon();ktAfter();}
+    else{
+      bubu(); const p=b.querySelector('.ktpar'); p.textContent='✕'; b.classList.add('ng');
+      setTimeout(()=>{if(b.isConnected){p.textContent='';b.classList.remove('ng');}},800);
+    }
+  });
+};
+function ktAfter(){
+  VIEWS.kotoba();
+  if(ktAns[ktTab].every(v=>v!==null))setTimeout(party,250);
 }
 
 /* ===== 重要語句のうごき（ひな形1・つなぐ言葉と同じ。さわらない） ===== */
@@ -1892,7 +2075,7 @@ TABS.forEach((t,i)=>{
   if(!VIEWS[t.view]) console.error('タブの view「'+t.view+'」がありません');
   const sub=t.sub==='auto'&&t.view==='quiz'?QUIZ.qs.length+'もん':t.sub;
   const b=document.createElement('button');
-  b.className='tab'+(t.view==='words'?' word':'');
+  b.className='tab'+(t.view==='words'?' word':'')+(t.view==='kotoba'?' kttab':'');
   b.setAttribute('role','tab');
   b.setAttribute('aria-selected',i===0?'true':'false');
   b.innerHTML=t.tab+(sub?`<small>${sub}</small>`:'');
